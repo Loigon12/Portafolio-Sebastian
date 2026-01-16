@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Profesional | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand { font-family: 'Playfair Display', serif; }
+        
+        .monkey-subtle-pattern {
+            background-color: #fdfbf7;
+            background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Textura sutil */
+        
+
+        /* --- Widget de WhatsApp --- */
+.wa-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Botón Flotante */
+.wa-float-btn {
+    width: 60px;
+    height: 60px;
+    background-color: #25d366; /* Color original WA para reconocimiento rápido */
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wa-float-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Ventana de Chat */
+.wa-chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 320px;
+    background: #0d1117;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: none; /* Se activa con JS */
+    flex-direction: column;
+    animation: slideUp 0.4s ease forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.wa-chat-header {
+    background: #075e54;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wa-header-info { display: flex; align-items: center; gap: 10px; }
+
+.wa-avatar { position: relative; width: 40px; height: 40px; }
+.wa-avatar img { width: 100%; border-radius: 50%; }
+.online-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #25d366;
+    border-radius: 50%;
+    border: 2px solid #075e54;
+}
+
+.wa-name { font-weight: bold; font-size: 0.9rem; margin: 0; }
+.wa-status { font-size: 0.7rem; opacity: 0.8; margin: 0; }
+.wa-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+/* Cuerpo del Chat */
+.wa-chat-body {
+    padding: 20px;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Fondo oficial WA */
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wa-message {
+    background: #056162;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 10px;
+    align-self: flex-end;
+    max-width: 85%;
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.wa-time {
+    display: block;
+    font-size: 0.6rem;
+    text-align: right;
+    margin-top: 5px;
+    opacity: 0.7;
+}
+
+.wa-sticker-container {
+    align-self: flex-end;
+}
+
+.wa-sticker {
+    width: 100px;
+    height: auto;
+}
+
+/* Footer y Botón */
+.wa-chat-footer { padding: 15px; background: #0d1117; text-align: center; }
+
+.wa-send-btn {
+    text-decoration: none;
+    background: #25d366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.wa-send-btn:hover { background: #128c7e; }
+        }
+
+        #loader {
+    /* Asegura que el loader cubra toda la pantalla incluso si hay scroll previo */
+    height: 100vh;
+    width: 100vw;
+}
+    </style>
+</head>
+<body class="monkey-subtle-pattern text-stone-800">
+<div id="loader" class="fixed inset-0 z-[200] bg-stone-50 flex flex-col items-center justify-center transition-opacity duration-1000">
+    <div class="relative">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="animate-pulse">
+            <path d="M12 2C10.5 2 9.2 2.6 8.2 3.6C7.2 4.6 6.6 5.9 6.6 7.4V8.4C4.6 8.9 3 10.7 3 12.9C3 15.5 5.1 17.6 7.7 17.6H16.3C18.9 17.6 21 15.5 21 12.9C21 10.7 19.4 8.9 17.4 8.4V7.4C17.4 5.9 16.8 4.6 15.8 3.6C14.8 2.6 13.5 2 12 2Z" fill="#57534e" fill-opacity="0.2"/>
+            <path d="M12 5C13.1046 5 14 5.89543 14 7C14 8.10457 13.1046 9 12 9C10.8954 9 10 8.10457 10 7C10 5.89543 10.8954 5 12 5Z" fill="#78716c"/>
+        </svg>
+        <div class="absolute inset-0 border-2 border-stone-200 border-t-amber-800 rounded-full animate-spin" style="margin: -10px;"></div>
+    </div>
+    <span class="mt-8 text-[10px] tracking-[0.5em] uppercase text-stone-400 font-light">Sebastian Londoño Medina</span>
+</div>
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="brand text-2xl font-bold tracking-tighter text-stone-900">
+                Loigon12 <span class="text-sm font-light italic">by Sebastian</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+                <a href="#inicio" class="hover:text-amber-700 transition">Inicio</a>
+                <a href="#sobre-mi" class="hover:text-amber-700 transition">Perfil</a>
+                <a href="#habilidades" class="hover:text-amber-700 transition">Habilidades</a>
+                <a href="#galeria" class="hover:text-amber-700 transition">Proyectos</a>
+                <a href="#contacto" class="px-4 py-2 bg-stone-900 text-white hover:bg-stone-700 transition">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/man-1853545_1280.jpg" 
+                 alt="Model Hero" class="w-full h-full object-cover opacity-90">
+            <div class="absolute inset-0 bg-gradient-to-r from-stone-900/40 to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-6xl md:text-8xl mb-4">PORTAFOLIO</h1>
+            <p class="text-lg md:text-xl font-light tracking-widest uppercase italic">Sebastian Londoño Medina</p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-stone-900 text-stone-100">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <p class="text-stone-500 text-xs uppercase mb-1">Experiencia</p>
+                <p class="text-2xl font-semibold">3 años</p>
+            </div>
+            <div>
+                <p class="text-stone-500 text-xs uppercase mb-1">Edad</p>
+                <p class="text-2xl font-semibold">19 años</p>
+            </div>
+            <div>
+                <p class="text-stone-500 text-xs uppercase mb-1">Cualidad</p>
+                <p class="text-2xl font-semibold">Adaptabilidad</p>
+            </div>
+            <div>
+                <p class="text-stone-500 text-xs uppercase mb-1">Hobbie</p>
+                <p class="text-2xl font-semibold">Hacer deporte</p>
+            </div>
+        </div>
+    </section>
+ <section id="sobre-mi" class="py-24 bg-stone-100">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2">
+                <img src="images/sobremi.jpg" alt="About" class="shadow-2xl grayscale hover:grayscale-0 transition duration-1000">
+            </div>
+            <div class="w-full md:w-1/2">
+                <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">Desarrollador de Software</span>
+                <h2 class="text-5xl mt-4 mb-6 leading-tight">Adaptabilidad y Evolución Constante.</h2>
+                <p class="text-stone-600 leading-relaxed mb-6">
+                    Soy un apasionado por la tecnología que vive en la intersección entre la lógica estructural de la ingeniería y la creatividad del desarrollo de software. Me enfoco en crear código limpio, escalable y, sobre todo, funcional. Siempre estoy aprendiendo algo nuevo, desde maneras de innovar con nuevas tecnologías a ideas de desarrollo agiles.
+
+<br><br>Mi objetivo es transformar ideas complejas en soluciones digitales intuitivas y eficientes que no solo cumplan con los requisitos técnicos, sino que también ofrezcan una experiencia de usuario excepcional, como paginas web, aplicaciones móviles, sistemas backend para potenciar software de tu empresa, negocio o proyecto. 
+                </p>
+                
+                <div class="flex space-x-6 text-2xl text-stone-400">
+                    <a href="https://www.instagram.com/sebaslondono_/" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-instagram hover:text-amber-800 cursor-pointer transition"></i>
+</a>
+                    <a href="https://github.com/Loigon12" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-github hover:text-amber-800 cursor-pointer transition"></i>
+</a>
+                    <a href="www.linkedin.com/in/sebastian-londoño-medina-007707305" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-linkedin hover:text-amber-800 cursor-pointer transition"></i>
+</a>
+                    <a href="https://www.tiktok.com/@sebaslondono_?_r=1&_t=ZS-936xFZ2REmH" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-tiktok hover:text-amber-800 cursor-pointer transition"></i>
+</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="habilidades" class="py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-6">
+        
+        <div class="text-center mb-20">
+            <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">Stack tecnológico</span>
+            <h2 class="text-4xl mt-4 mb-4 italic">Habilidades</h2>
+            <p class="text-stone-500 font-light max-w-2xl mx-auto">
+                Conjunto de habilidades técnicas en donde manejo un buen dominio y comodidad.
+            </p>
+        </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
+            
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
+                    <i class="fa-solid fa-code text-cyan-500"></i>
+                    <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Frontend</h3>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-html5 text-orange-600"></i> HTML5
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-css3-alt text-blue-600"></i> CSS3
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-js text-yellow-500"></i> JavaScript (ES6+)
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-react text-sky-400"></i> React.js
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-500"></i> Next.js
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-wind text-sky-500"></i> Tailwind CSS
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-stone-400"></i> SEO Optimization
+                    </span>
+                    
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
+                    <i class="fa-solid fa-server text-emerald-500"></i>
+                    <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Backend & DB</h3>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-leaf text-green-600"></i> MongoDB
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-orange-500"></i> Firebase
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-database text-red-700"></i> Oracle DB
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-database text-blue-800"></i> MySQL (phpMyAdmin)
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-docker text-sky-600"></i> Docker
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-pepper-hot text-stone-600"></i> Flask
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-stone-500"></i> REST APIs
+                    </span>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
+                    <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
+                    <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Herramientas & Dev</h3>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-git-alt text-orange-500"></i> Git
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-github text-stone-900"></i> GitHub
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-rocket text-orange-600"></i> Postman
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-code text-blue-500"></i> VS Code
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-purple-600"></i> IntelliJ IDEA
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-orange-400"></i> FileZilla
+                    </span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                        <i class="fa-brands fa-trello text-blue-600"></i> Trello / Jira
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border-stone-200 mb-20">
+
+        <div id="certificados" class="text-center">
+            <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">Reconocimientos</span>
+            <h2 class="text-4xl mt-4 mb-12 italic">Certificaciones Obtenidas</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/1757821728494.jpg')">
+                    <img src="images/certificaciones/1757821728494.jpg" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Arquitectura en la Nube</p>
+                    </div>
+                </div>
+
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/javascript.png')">
+                    <img src="images/certificaciones/javascript.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Programación con javascript</p>
+                    </div>
+                </div>
+
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/react.png')">
+                    <img src="images/certificaciones/react.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Conceptos de React</p>
+                    </div>
+                </div>
+
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/Scrum.png')">
+                    <img src="images/certificaciones/Scrum.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Fundamentos de Scrum</p>
+                    </div>
+                </div>
+
+                  <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/JiraSoftware.png')">
+                    <img src="images/certificaciones/JiraSoftware.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Fundamentos Teoricos en Jira Software: Estrategias Efectivas para Equipos Agiles</p>
+                    </div>
+                </div>
+                
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
+                     onclick="openModal('images/certificaciones/desarrollo de software.png')">
+                    <img src="images/certificaciones/desarrollo de software.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
+                        <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Tecnico Laboral en Desarrollo de software</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="galeria" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl italic mb-4">Proyectos Destacados</h2>
+                <p class="text-stone-500 max-w-lg mx-auto font-light">Explora los diversos proyectos que he desarrollado.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/FEGCON.png" 
+                             alt="Urban Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Pagina corporativa</span>
+                        <h3 class="text-2xl mt-2 mb-4">FEGCON: Fondo de Empleados del Grupo Constructor del Tolima</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Interfaces interactivas y corporativas para el Fondo de Empleados FEGCON, gestionando sus asociados y beneficiaros con una estructura de datos robusta. Me desempeñe en este proyecto como desarrollador de stack completo.</p>
+                        <a href="https://fegcon.com.co" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/snake.png" 
+                             alt="Vogue Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Juego Retro</span>
+                        <h3 class="text-2xl mt-2 mb-4">Videojuego: SNAKE</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de un videojuego clásico Snake con una interfaz gamer y funcionalidades interactivas.</p>
+                        <a href="https://loigon12.github.io/Snake-web/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/AURA.png" 
+                             alt="Vogue Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Pagina Elegante</span>
+                        <h3 class="text-2xl mt-2 mb-4">AURA</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de una página web elegante para una joyería como freelancer, con diseño moderno y visualización de su catalogo de joyas.</p>
+                        <a href="https://aura-nine-sooty.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/newyears.png" 
+                             alt="Vogue Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Interactivo</span>
+                        <h3 class="text-2xl mt-2 mb-4">newyears</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina de aterrizaje promocional para la campaña de Artista "newyears" con su estetica única y autentica.</p>
+                        <a href="https://loigon12.github.io/newyears/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+
+                
+        </div>
+    </section>
+
+   
+
+<div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm transition-all" onclick="closeModal()">
+    <div class="relative max-w-5xl w-full flex flex-col items-center">
+        <button class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-500 transition">&times;</button>
+        <img id="modalImg" src="" class="max-w-full max-h-[80vh] rounded shadow-2xl border-4 border-white/10" onclick="event.stopPropagation()">
+    </div>
+</div>
+
+<script>
+    function openModal(src) {
+        const modal = document.getElementById('certModal');
+        const img = document.getElementById('modalImg');
+        img.src = src;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('certModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+</script>
+
+    <div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4 md:p-10 transition-opacity duration-300">
+        <button onclick="closeModal()" class="absolute top-8 right-8 text-white text-3xl hover:text-amber-500 transition">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="modalImg" src="" alt="Certificado Ampliado" class="max-w-full max-h-full object-contain shadow-2xl">
+    </div>
+
+    <script>
+        const modal = document.getElementById('certModal');
+        const modalImg = document.getElementById('modalImg');
+
+        function openModal(imgSrc) {
+            modalImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            modalImg.src = '';
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    
+    // Pequeño retardo intencional para que la transición no sea brusca
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        
+        // Eliminamos el elemento del DOM después de la transición
+        setTimeout(() => {
+            loader.style.display = 'none';
+            // Permitimos el scroll una vez cargado
+            document.body.style.overflow = 'auto';
+        }, 1000);
+    }, 1500);
+});
+
+// Bloquear scroll mientras carga
+document.body.style.overflow = 'hidden';
+    </script>
+
+
+    <section id="contacto" class="py-24 max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-4xl mb-4 italic">¿Trabajamos juntos?</h2>
+        <p class="text-stone-500 mb-12">Estoy dispuesto a convertir tus ideas en sistemas robustos y exitosos.</p>
+        
+        <form id="contactForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" placeholder="Nombre" class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
+                <input type="email" placeholder="Email" class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
+            </div>
+            <textarea placeholder="Mensaje" rows="4" class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition"></textarea>
+            <button class="mt-8 px-12 py-4 bg-stone-900 text-white uppercase tracking-widest text-sm hover:bg-stone-700 transition">Enviar Propuesta</button>
+        </form>
+    </section>
+
+    <footer class="py-12 border-t border-stone-200 text-center">
+        <div class="flex justify-center mb-6">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-20 hover:opacity-100 transition duration-500 cursor-help">
+                <path d="M12 2C10.5 2 9.2 2.6 8.2 3.6C7.2 4.6 6.6 5.9 6.6 7.4V8.4C4.6 8.9 3 10.7 3 12.9C3 15.5 5.1 17.6 7.7 17.6H16.3C18.9 17.6 21 15.5 21 12.9C21 10.7 19.4 8.9 17.4 8.4V7.4C17.4 5.9 16.8 4.6 15.8 3.6C14.8 2.6 13.5 2 12 2Z" fill="#57534e"/>
+            </svg>
+        </div>
+        <p class="text-xs text-stone-400 uppercase tracking-widest">&copy; 2026 Sebastian Londoño Medina - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Animación simple de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Efecto reveal al hacer scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => {
+                const top = window.scrollY;
+                const offset = sec.offsetTop - 400;
+                if (top >= offset) {
+                    sec.classList.add('opacity-100');
+                    sec.classList.remove('opacity-0');
+                }
+            });
+        });
+
+        function toggleWaChat() {
+    const chatWindow = document.getElementById('wa-chat-window');
+    const isVisible = chatWindow.style.display === 'flex';
+    
+    chatWindow.style.display = isVisible ? 'none' : 'flex';
+    
+    // Actualizar la hora al abrir
+    if (!isVisible) {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        document.getElementById('current-time').innerText = `${hours}:${minutes}`;
+    }
+}
+    </script>
+        <div class="wa-widget">
+    <div class="wa-chat-window" id="wa-chat-window">
+        <div class="wa-chat-header">
+            <div class="wa-header-info">
+                <div class="wa-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Tu+Nombre&background=00ffcc&color=0a0a0a" alt="Avatar">
+                    <span class="online-dot"></span>
+                </div>
+                <div>
+                    <p class="wa-name">Sebas</p>
+                    <p class="wa-status">En línea</p>
+                </div>
+            </div>
+            <button class="wa-close" onclick="toggleWaChat()">&times;</button>
+        </div>
+
+        <div class="wa-chat-body">
+            <div class="wa-message">
+                <p>¿Estás dispuesto a que trabajemos juntos?</p>
+                <span class="wa-time" id="current-time"></span>
+            </div>
+            
+            <div class="wa-sticker-container">
+                <img src="images.jpg" alt="Monkey Sticker" class="wa-sticker">
+            </div>
+        </div>
+
+        <div class="wa-chat-footer">
+            <a href="https://wa.me/573144869287" target="_blank" class="wa-send-btn">
+                Ir a WhatsApp <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <button class="wa-float-btn" onclick="toggleWaChat()" title="¡Hablemos!">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+</div>
+</body>
+</html>
