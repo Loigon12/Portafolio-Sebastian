@@ -7,158 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11c.966 0 1.75-.784 1.75-1.75S7.966 7.5 7 7.5s-1.75.784-1.75 1.75S6.034 11 7 11z'/><path d='M17 11c.966 0 1.75-.784 1.75-1.75S17.966 7.5 17 7.5s-1.75.784-1.75 1.75.784 1.75 1.75 1.75z'/><path d='M12 21c-4.418 0-8-3.582-8-8 0-1.85.63-3.55 1.69-4.9C6.44 6.85 8.91 4 12 4s5.56 2.85 6.31 4.1c1.06 1.35 1.69 3.05 1.69 4.9 0 4.418-3.582 8-8 8z'/><path d='M12 18c-2.21 0-4-1.79-4-4 0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2 0 2.21-1.79 4-4 4z'/></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, .brand { font-family: 'Playfair Display', serif; }
-        
-        .monkey-subtle-pattern {
-            background-color: #fdfbf7;
-            background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Textura sutil */
-        
 
-        /* --- Widget de WhatsApp --- */
-.wa-widget {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Botón Flotante */
-.wa-float-btn {
-    width: 60px;
-    height: 60px;
-    background-color: #25d366; /* Color original WA para reconocimiento rápido */
-    color: white;
-    border-radius: 50%;
-    border: none;
-    font-size: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.wa-float-btn:hover {
-    transform: scale(1.1) rotate(10deg);
-}
-
-/* Ventana de Chat */
-.wa-chat-window {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 320px;
-    background: #0d1117;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    overflow: hidden;
-    display: none; /* Se activa con JS */
-    flex-direction: column;
-    animation: slideUp 0.4s ease forwards;
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Header */
-.wa-chat-header {
-    background: #075e54;
-    padding: 15px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.wa-header-info { display: flex; align-items: center; gap: 10px; }
-
-.wa-avatar { position: relative; width: 40px; height: 40px; }
-.wa-avatar img { width: 100%; border-radius: 50%; }
-.online-dot {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 10px;
-    height: 10px;
-    background: #25d366;
-    border-radius: 50%;
-    border: 2px solid #075e54;
-}
-
-.wa-name { font-weight: bold; font-size: 0.9rem; margin: 0; }
-.wa-status { font-size: 0.7rem; opacity: 0.8; margin: 0; }
-.wa-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-
-/* Cuerpo del Chat */
-.wa-chat-body {
-    padding: 20px;
-    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); /* Fondo oficial WA */
-    background-size: contain;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.wa-message {
-    background: #056162;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px 10px 0 10px;
-    align-self: flex-end;
-    max-width: 85%;
-    position: relative;
-    font-size: 0.9rem;
-}
-
-.wa-time {
-    display: block;
-    font-size: 0.6rem;
-    text-align: right;
-    margin-top: 5px;
-    opacity: 0.7;
-}
-
-.wa-sticker-container {
-    align-self: flex-end;
-}
-
-.wa-sticker {
-    width: 100px;
-    height: auto;
-}
-
-/* Footer y Botón */
-.wa-chat-footer { padding: 15px; background: #0d1117; text-align: center; }
-
-.wa-send-btn {
-    text-decoration: none;
-    background: #25d366;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.wa-send-btn:hover { background: #128c7e; }
-        }
-
-        #loader {
-    /* Asegura que el loader cubra toda la pantalla incluso si hay scroll previo */
-    height: 100vh;
-    width: 100vw;
-}
     </style>
 </head>
 <body class="monkey-subtle-pattern text-stone-800">
@@ -461,6 +314,24 @@
                     </div>
                 </div>
 
+
+                   <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/newyears.png" 
+                             alt="Vogue Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Interactivo</span>
+                        <h3 class="text-2xl mt-2 mb-4">newyears</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina de aterrizaje promocional para la campaña de Artista "newyears" con su estetica única y autentica.</p>
+                        <a href="https://loigon12.github.io/newyears/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+
+
+                
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
                         <img src="images/snake.png" 
@@ -476,38 +347,6 @@
                     </div>
                 </div>
                 
-                     <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/FASTWINGS.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Menu interactivo</span>
-                        <h3 class="text-2xl mt-2 mb-4">FASTWINGS</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Menú interactivo para restaurante de alitas que permite a los clientes explorar opciones, personalizar su pedido y enviarlo directamente desde su mesa. El sistema detecta automáticamente la ubicación del cliente y asocia la orden a la mesa correspondiente, agilizando el servicio y mejorando la experiencia gastronómica.</p>
-                        <a href="https://fast-wings.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
-                    </div>
-                </div>
-
-                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/AURA.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Pagina Elegante</span>
-                        <h3 class="text-2xl mt-2 mb-4">AURA</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de una página web elegante para una joyería como freelancer, con diseño moderno y visualización de su catalogo de joyas.</p>
-                        <a href="https://aura-nine-sooty.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
-                    </div>
-                </div>
-
-                   
-
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
                         <img src="images/neonsurge.png" 
@@ -523,20 +362,7 @@
                     </div>
                 </div>
 
-                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/newyears.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Interactivo</span>
-                        <h3 class="text-2xl mt-2 mb-4">newyears</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina de aterrizaje promocional para la campaña de Artista "newyears" con su estetica única y autentica.</p>
-                        <a href="https://loigon12.github.io/newyears/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
-                    </div>
-                </div>
+              
 
                   <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
@@ -557,80 +383,18 @@
         </div>
     </section>
 
-   
-
 <div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm transition-all" onclick="closeModal()">
     <div class="relative max-w-5xl w-full flex flex-col items-center">
         <button class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-500 transition">&times;</button>
         <img id="modalImg" src="" class="max-w-full max-h-[80vh] rounded shadow-2xl border-4 border-white/10" onclick="event.stopPropagation()">
     </div>
 </div>
-
-<script>
-    function openModal(src) {
-        const modal = document.getElementById('certModal');
-        const img = document.getElementById('modalImg');
-        img.src = src;
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('certModal');
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = 'auto';
-    }
-</script>
-
     <div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4 md:p-10 transition-opacity duration-300">
         <button onclick="closeModal()" class="absolute top-8 right-8 text-white text-3xl hover:text-amber-500 transition">
             <i class="fa-solid fa-xmark"></i>
         </button>
         <img id="modalImg" src="" alt="Certificado Ampliado" class="max-w-full max-h-full object-contain shadow-2xl">
     </div>
-
-    <script>
-        const modal = document.getElementById('certModal');
-        const modalImg = document.getElementById('modalImg');
-
-        function openModal(imgSrc) {
-            modalImg.src = imgSrc;
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            modalImg.src = '';
-        }
-
-        // Cerrar modal al hacer clic fuera de la imagen
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    
-    // Pequeño retardo intencional para que la transición no sea brusca
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        
-        // Eliminamos el elemento del DOM después de la transición
-        setTimeout(() => {
-            loader.style.display = 'none';
-            // Permitimos el scroll una vez cargado
-            document.body.style.overflow = 'auto';
-        }, 1000);
-    }, 1500);
-});
-
-// Bloquear scroll mientras carga
-document.body.style.overflow = 'hidden';
-    </script>
 
 
     <section id="contacto" class="py-24 max-w-3xl mx-auto px-6 text-center">
@@ -656,45 +420,7 @@ document.body.style.overflow = 'hidden';
         <p class="text-xs text-stone-400 uppercase tracking-widest">&copy; 2026 Sebastian Londoño Medina - Todos los derechos reservados</p>
     </footer>
 
-    <script>
-        // Animación simple de scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
 
-        // Efecto reveal al hacer scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(sec => {
-                const top = window.scrollY;
-                const offset = sec.offsetTop - 400;
-                if (top >= offset) {
-                    sec.classList.add('opacity-100');
-                    sec.classList.remove('opacity-0');
-                }
-            });
-        });
-
-        function toggleWaChat() {
-    const chatWindow = document.getElementById('wa-chat-window');
-    const isVisible = chatWindow.style.display === 'flex';
-    
-    chatWindow.style.display = isVisible ? 'none' : 'flex';
-    
-    // Actualizar la hora al abrir
-    if (!isVisible) {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        document.getElementById('current-time').innerText = `${hours}:${minutes}`;
-    }
-}
-    </script>
         <div class="wa-widget">
     <div class="wa-chat-window" id="wa-chat-window">
         <div class="wa-chat-header">
