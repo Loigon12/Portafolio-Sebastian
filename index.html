@@ -5,13 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebastian Londoño | Portafolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class' }
+</script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11c.966 0 1.75-.784 1.75-1.75S7.966 7.5 7 7.5s-1.75.784-1.75 1.75S6.034 11 7 11z'/><path d='M17 11c.966 0 1.75-.784 1.75-1.75S17.966 7.5 17 7.5s-1.75.784-1.75 1.75.784 1.75 1.75 1.75z'/><path d='M12 21c-4.418 0-8-3.582-8-8 0-1.85.63-3.55 1.69-4.9C6.44 6.85 8.91 4 12 4s5.56 2.85 6.31 4.1c1.06 1.35 1.69 3.05 1.69 4.9 0 4.418-3.582 8-8 8z'/><path d='M12 18c-2.21 0-4-1.79-4-4 0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2 0 2.21-1.79 4-4 4z'/></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         
+        /* ===== DARK MODE ===== */
+html.dark body { background-color: #0c0a09; color: #e7e5e4; }
 
+/* Navbar */
+html.dark nav { background-color: rgba(12,10,9,0.90) !important; border-color: #292524 !important; }
+html.dark nav a { color: #d6d3d1 !important; }
+html.dark .brand { color: #fafaf9 !important; }
+
+/* Loader */
+html.dark #loader { background-color: #0c0a09 !important; }
+
+/* Fondos de secciones */
+html.dark .bg-white   { background-color: #171412 !important; }
+html.dark .bg-stone-50 { background-color: #1c1917 !important; }
+html.dark .bg-stone-100 { background-color: #1e1a18 !important; }
+
+/* Textos */
+html.dark .text-stone-900 { color: #fafaf9 !important; }
+html.dark .text-stone-800 { color: #e7e5e4 !important; }
+html.dark .text-stone-700 { color: #d6d3d1 !important; }
+html.dark .text-stone-600 { color: #a8a29e !important; }
+html.dark .text-stone-500 { color: #78716c !important; }
+html.dark .text-stone-400 { color: #57534e !important; }
+
+/* Bordes */
+html.dark .border-stone-200 { border-color: #292524 !important; }
+html.dark .border-stone-100 { border-color: #1c1917 !important; }
+html.dark hr { border-color: #292524 !important; }
+
+/* Chips de habilidades */
+html.dark span.bg-white {
+    background-color: #231f1d !important;
+    border-color: #3c3330 !important;
+    color: #d6d3d1 !important;
+}
+
+/* Cards de servicios */
+html.dark .group.relative.bg-stone-50 {
+    background-color: #1e1a18 !important;
+    border-color: #2c2724 !important;
+}
+html.dark .group.relative.bg-stone-50 h3 { color: #fafaf9 !important; }
+html.dark .group.relative.bg-stone-50 p  { color: #78716c !important; }
+html.dark .group.relative.bg-stone-50 span { border-color: #3c3330 !important; }
+
+/* Cards de proyectos */
+html.dark .group.bg-stone-50 {
+    background-color: #1e1a18 !important;
+    border-color: #2c2724 !important;
+}
+html.dark .group.bg-stone-50 h3 { color: #fafaf9 !important; }
+html.dark .group.bg-stone-50 p  { color: #78716c !important; }
+html.dark .group.bg-stone-50 a  { border-color: #78716c !important; color: #d6d3d1 !important; }
+
+/* Sección sobre mí */
+html.dark #sobre-mi h2 { color: #fafaf9 !important; }
+
+/* Formulario de contacto */
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark textarea {
+    color: #e7e5e4 !important;
+    border-color: #3c3330 !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder { color: #57534e !important; }
+html.dark input:focus,
+html.dark textarea:focus { border-color: #78716c !important; }
+
+/* Mensajes de estado del form */
+html.dark #statusSuccess,
+html.dark #statusError { background-color: #1e1a18 !important; border-color: #292524 !important; }
+html.dark #statusSuccess p,
+html.dark #statusError p { color: #d6d3d1 !important; }
+
+/* Footer */
+html.dark footer { border-color: #292524 !important; }
+
+/* CTA inferior de servicios */
+html.dark .bg-amber-100 { background-color: #451a03 !important; }
+
+/* Botón modo oscuro */
+#darkToggle {
+    transition: all 0.3s ease;
+}
+#darkToggle .icon-sun  { display: none; }
+#darkToggle .icon-moon { display: block; }
+html.dark #darkToggle .icon-sun  { display: block; }
+html.dark #darkToggle .icon-moon { display: none; }
     </style>
 </head>
 <body class="monkey-subtle-pattern text-stone-800">
@@ -35,6 +126,13 @@
                 <a href="#sobre-mi" class="hover:text-amber-700 transition">Perfil</a>
                 <a href="#habilidades" class="hover:text-amber-700 transition">Habilidades</a>
                 <a href="#galeria" class="hover:text-amber-700 transition">Proyectos</a>
+                <button id="darkToggle"
+    onclick="toggleDarkMode()"
+    class="ml-2 w-9 h-9 flex items-center justify-center border border-stone-300 dark:border-stone-600 hover:border-amber-700 text-stone-500 hover:text-amber-700 transition rounded-sm"
+    title="Cambiar modo">
+    <i class="icon-moon fa-solid fa-moon text-sm"></i>
+    <i class="icon-sun  fa-solid fa-sun  text-sm text-amber-500"></i>
+</button>
                 <a href="#contacto" class="px-4 py-2 bg-stone-900 text-white hover:bg-stone-700 transition">Contacto</a>
             </div>
         </div>
@@ -271,29 +369,43 @@
                     <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Frontend</h3>
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-html5 text-orange-600"></i> HTML5
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-css3-alt text-blue-600"></i> CSS3
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-js text-yellow-500"></i> JavaScript (ES6+)
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-react text-sky-400"></i> React.js
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-amber-500"></i> Next.js
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-wind text-sky-500"></i> Tailwind CSS
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass text-stone-400"></i> SEO Optimization
-                    </span>
-                    
-                </div>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-html5 text-orange-600"></i> HTML5
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-css3-alt text-blue-600"></i> CSS3
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-js text-yellow-500"></i> JavaScript ES6+
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-react text-sky-400"></i> React.js
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-amber-500"></i> Next.js
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-purple-500"></i> Vite
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-wind text-sky-500"></i> Tailwind CSS
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-bootstrap text-purple-700"></i> Bootstrap
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-vuejs text-emerald-500"></i> Vue.js
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-magnifying-glass text-stone-400"></i> SEO
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-pen-ruler text-pink-500"></i> Diseño Web
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-mobile-screen text-teal-500"></i> UI/UX Responsive
+            </span>
+        </div>
             </div>
 
             <div class="space-y-6">
@@ -302,59 +414,68 @@
                     <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Backend & DB</h3>
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-leaf text-green-600"></i> MongoDB
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-fire text-orange-500"></i> Firebase
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-database text-red-700"></i> Oracle DB
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-database text-blue-800"></i> MySQL (phpMyAdmin)
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-docker text-sky-600"></i> Docker
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-pepper-hot text-stone-600"></i> Flask
-                    </span>
-                    
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-gears text-stone-500"></i> REST APIs
-                    </span>
-                </div>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-pepper-hot text-stone-600"></i> Flask (Python)
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-node-js text-green-600"></i> Node.js
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-gears text-stone-500"></i> REST APIs
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-green-600"></i> MongoDB
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-fire text-orange-500"></i> Firebase
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-database text-blue-800"></i> MySQL
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-database text-red-700"></i> Oracle DB
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-database text-emerald-600"></i> Supabase
+            </span>
+        </div>
             </div>
 
             <div class="space-y-6">
+                
                 <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
-                    <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
-                    <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Herramientas & Dev</h3>
-                </div>
-                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-git-alt text-orange-500"></i> Git
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-github text-stone-900"></i> GitHub
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-rocket text-orange-600"></i> Postman
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-code text-blue-500"></i> VS Code
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-brain text-purple-600"></i> IntelliJ IDEA
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-solid fa-folder-open text-orange-400"></i> FileZilla
-                    </span>
-                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                        <i class="fa-brands fa-trello text-blue-600"></i> Trello / Jira
-                    </span>
-                </div>
+            <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
+            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Herramientas & Metodologías</h3>
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-git-alt text-orange-500"></i> Git / GitHub
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-rocket text-orange-600"></i> Postman
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-code text-blue-500"></i> VS Code
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-brain text-purple-600"></i> IntelliJ IDEA
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-jira text-blue-600"></i> Jira Software
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-docker text-sky-600"></i> Docker
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-brands fa-trello text-blue-500"></i> Trello
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-arrows-spin text-teal-600"></i> Scrum
+            </span>
+            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
+                <i class="fa-solid fa-folder-open text-orange-400"></i> FileZilla
+            </span>
+        </div>
             </div>
         </div>
 
@@ -518,12 +639,124 @@
                         <a href="https://el-rincon-de-loigon.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
-
-                
-
-                
         </div>
     </section>
+
+<!-- ===== SECCIÓN: DESCARGA MI CV ===== -->
+<section id="cv" class="py-24 bg-stone-900 overflow-hidden relative">
+
+    <!-- Decoración de fondo -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-center">
+        <span class="text-[28rem] font-black text-white leading-none tracking-tighter">CV</span>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+
+        <!-- Lado izquierdo: texto -->
+        <div class="w-full md:w-3/5 text-stone-100">
+            <span class="text-amber-500 font-semibold tracking-widest text-sm uppercase">
+                ¿Te interesa mi perfil profesional?
+            </span>
+            <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight italic">
+                Descarga mi CV y<br>conoce mi perfil completo.
+            </h2>
+            <p class="text-stone-400 leading-relaxed mb-8 font-light text-base">
+                Aquí encontrarás mi stack tecnológico, proyectos reales con clientes,
+                certificaciones y toda la información que necesitas para evaluar si soy
+                el desarrollador que tu equipo está buscando.
+            </p>
+
+            <!-- Chips de lo que incluye -->
+            <div class="flex flex-wrap gap-3 mb-10">
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
+                    ✦ Proyectos en producción
+                </span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
+                    ✦ Stack Full-Stack
+                </span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
+                    ✦ Certificaciones
+                </span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
+                    ✦ Disponibilidad inmediata
+                </span>
+            </div>
+
+            <!-- Botones CTA -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="CV_Sebastian_Londono_Medina.pdf"
+                   download
+                   class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-amber-700 hover:bg-amber-600 text-white text-xs uppercase tracking-widest transition-all duration-300 group">
+                    <i class="fa-solid fa-download group-hover:-translate-y-0.5 transition-transform"></i>
+                    Descargar CV
+                </a>
+                <a href="#contacto"
+                   class="inline-flex items-center justify-center gap-3 px-10 py-4 border border-stone-500 text-stone-300 hover:border-amber-600 hover:text-amber-500 text-xs uppercase tracking-widest transition-all duration-300">
+                    Contáctame
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Lado derecho: tarjeta visual del CV -->
+        <div class="w-full md:w-2/5 flex justify-center">
+            <div class="relative w-64">
+                <!-- Sombra decorativa -->
+                <div class="absolute inset-0 translate-x-3 translate-y-3 bg-amber-800/30 rounded-sm"></div>
+
+                <!-- Tarjeta del CV -->
+                <div class="relative bg-white rounded-sm p-7 shadow-2xl">
+                    <!-- Barra de color arriba -->
+                    <div class="h-2 bg-gradient-to-r from-stone-800 to-amber-700 -mx-7 -mt-7 mb-6 rounded-t-sm"></div>
+
+                    <!-- Contenido simulado -->
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-white text-xs font-bold shrink-0">SL</div>
+                        <div>
+                            <p class="text-stone-900 font-bold text-sm leading-tight">Sebastian Londoño</p>
+                            <p class="text-stone-400 text-[11px] italic">Desarrollador Full-Stack</p>
+                        </div>
+                    </div>
+
+                    <!-- Líneas decorativas simulando texto -->
+                    <div class="space-y-2 mb-4">
+                        <div class="h-1.5 bg-stone-200 rounded w-full"></div>
+                        <div class="h-1.5 bg-stone-200 rounded w-4/5"></div>
+                        <div class="h-1.5 bg-stone-200 rounded w-full"></div>
+                        <div class="h-1.5 bg-stone-200 rounded w-3/5"></div>
+                    </div>
+
+                    <div class="border-t border-stone-100 pt-4 space-y-1.5 mb-4">
+                        <div class="h-1.5 bg-amber-100 rounded w-full"></div>
+                        <div class="h-1.5 bg-stone-100 rounded w-5/6"></div>
+                        <div class="h-1.5 bg-stone-100 rounded w-full"></div>
+                    </div>
+
+                    <!-- Skills chips mini -->
+                    <div class="flex flex-wrap gap-1 mb-4">
+                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">React</span>
+                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Next.js</span>
+                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">MongoDB</span>
+                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Docker</span>
+                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Flask</span>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <div class="h-1.5 bg-stone-100 rounded w-full"></div>
+                        <div class="h-1.5 bg-stone-100 rounded w-3/4"></div>
+                    </div>
+
+                    <!-- Badge -->
+                    <div class="absolute -top-3 -right-3 w-12 h-12 bg-amber-700 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fa-solid fa-file-lines text-white text-base"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ===== FIN SECCIÓN CV ===== -->
 
 <div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm transition-all" onclick="closeModal()">
     <div class="relative max-w-5xl w-full flex flex-col items-center">
@@ -661,6 +894,23 @@
 </div>
 
 <script src="js/Main.js"></script>
+<script>
+    // ===== DARK MODE =====
+    function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Aplicar preferencia guardada al cargar
+    (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        }
+    })();
+</script>
 <script src="js/Form.js"></script>
 </body>
 </html>
