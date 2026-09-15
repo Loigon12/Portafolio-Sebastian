@@ -15,94 +15,92 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         
         /* ===== DARK MODE ===== */
-html.dark body { background-color: #0c0a09; color: #e7e5e4; }
+        html.dark body { background-color: #0c0a09; color: #e7e5e4; }
 
-/* Navbar */
-html.dark nav { background-color: rgba(12,10,9,0.90) !important; border-color: #292524 !important; }
-html.dark nav a { color: #d6d3d1 !important; }
-html.dark .brand { color: #fafaf9 !important; }
+        /* Navbar */
+        html.dark nav { background-color: rgba(12,10,9,0.90) !important; border-color: #292524 !important; }
+        html.dark nav a { color: #d6d3d1 !important; }
+        html.dark .brand { color: #fafaf9 !important; }
 
-/* Loader */
-html.dark #loader { background-color: #0c0a09 !important; }
+        /* Loader */
+        html.dark #loader { background-color: #0c0a09 !important; }
 
-/* Fondos de secciones */
-html.dark .bg-white   { background-color: #171412 !important; }
-html.dark .bg-stone-50 { background-color: #1c1917 !important; }
-html.dark .bg-stone-100 { background-color: #1e1a18 !important; }
+        /* Fondos de secciones */
+        html.dark .bg-white   { background-color: #171412 !important; }
+        html.dark .bg-stone-50 { background-color: #1c1917 !important; }
+        html.dark .bg-stone-100 { background-color: #1e1a18 !important; }
+        html.dark .bg-stone-200 { background-color: #292524 !important; } /* Corregido: para tarjetas de certificaciones */
 
-/* Textos */
-html.dark .text-stone-900 { color: #000000 !important; }
-html.dark .text-stone-800 { color: #e7e5e4 !important; }
-html.dark .text-stone-700 { color: #d6d3d1 !important; }
-html.dark .text-stone-600 { color: #a8a29e !important; }
-html.dark .text-stone-500 { color: #78716c !important; }
-html.dark .text-stone-400 { color: #57534e !important; }
+        /* Textos */
+        html.dark .text-stone-900 { color: #fafaf9 !important; } /* Corregido: Invierte de negro a claro */
+        html.dark .text-stone-800 { color: #e7e5e4 !important; }
+        html.dark .text-stone-700 { color: #d6d3d1 !important; }
+        html.dark .text-stone-600 { color: #a8a29e !important; }
+        html.dark .text-stone-500 { color: #9a928d !important; } /* Corregido: Ligeramente más claro para lectura */
+        html.dark .text-stone-400 { color: #78716c !important; }
 
-/* Bordes */
-html.dark .border-stone-200 { border-color: #292524 !important; }
-html.dark .border-stone-100 { border-color: #1c1917 !important; }
-html.dark hr { border-color: #292524 !important; }
+        /* Bordes */
+        html.dark .border-stone-300 { border-color: #44403c !important; } /* Corregido: inputs de contacto */
+        html.dark .border-stone-200 { border-color: #292524 !important; }
+        html.dark .border-stone-100 { border-color: #1c1917 !important; }
+        html.dark hr { border-color: #292524 !important; }
 
-/* Chips de habilidades */
-html.dark span.bg-white {
-    background-color: #231f1d !important;
-    border-color: #3c3330 !important;
-    color: #d6d3d1 !important;
-}
+        /* Chips de habilidades */
+        html.dark span.bg-white {
+            background-color: #231f1d !important;
+            border-color: #3c3330 !important;
+            color: #d6d3d1 !important;
+        }
 
-/* Cards de servicios */
-html.dark .group.relative.bg-stone-50 {
-    background-color: #1e1a18 !important;
-    border-color: #2c2724 !important;
-}
-html.dark .group.relative.bg-stone-50 h3 { color: #fafaf9 !important; }
-html.dark .group.relative.bg-stone-50 p  { color: #78716c !important; }
-html.dark .group.relative.bg-stone-50 span { border-color: #3c3330 !important; }
+        /* Cards de servicios y proyectos */
+        html.dark .group.relative.bg-stone-50,
+        html.dark .group.bg-stone-50 {
+            background-color: #1e1a18 !important;
+            border-color: #2c2724 !important;
+        }
+        
+        html.dark .group.relative.bg-stone-50 h3,
+        html.dark .group.bg-stone-50 h3 { color: #fafaf9 !important; }
+        html.dark .group.relative.bg-stone-50 p,
+        html.dark .group.bg-stone-50 p  { color: #a8a29e !important; }
+        html.dark .group.relative.bg-stone-50 span,
+        html.dark .group.bg-stone-50 a  { border-color: #57534e !important; color: #d6d3d1 !important; }
 
-/* Cards de proyectos */
-html.dark .group.bg-stone-50 {
-    background-color: #1e1a18 !important;
-    border-color: #2c2724 !important;
-}
-html.dark .group.bg-stone-50 h3 { color: #fafaf9 !important; }
-html.dark .group.bg-stone-50 p  { color: #78716c !important; }
-html.dark .group.bg-stone-50 a  { border-color: #78716c !important; color: #d6d3d1 !important; }
+        /* Sección sobre mí */
+        html.dark #sobre-mi h2 { color: #fafaf9 !important; }
 
-/* Sección sobre mí */
-html.dark #sobre-mi h2 { color: #fafaf9 !important; }
+        /* Formulario de contacto */
+        html.dark input[type="text"],
+        html.dark input[type="email"],
+        html.dark textarea {
+            color: #e7e5e4 !important;
+            border-color: #44403c !important;
+        }
+        html.dark input::placeholder,
+        html.dark textarea::placeholder { color: #78716c !important; }
+        html.dark input:focus,
+        html.dark textarea:focus { border-color: #a8a29e !important; }
 
-/* Formulario de contacto */
-html.dark input[type="text"],
-html.dark input[type="email"],
-html.dark textarea {
-    color: #e7e5e4 !important;
-    border-color: #3c3330 !important;
-}
-html.dark input::placeholder,
-html.dark textarea::placeholder { color: #57534e !important; }
-html.dark input:focus,
-html.dark textarea:focus { border-color: #78716c !important; }
+        /* Mensajes de estado del form */
+        html.dark #statusSuccess,
+        html.dark #statusError { background-color: #1e1a18 !important; border-color: #292524 !important; }
+        html.dark #statusSuccess p,
+        html.dark #statusError p { color: #d6d3d1 !important; }
 
-/* Mensajes de estado del form */
-html.dark #statusSuccess,
-html.dark #statusError { background-color: #1e1a18 !important; border-color: #292524 !important; }
-html.dark #statusSuccess p,
-html.dark #statusError p { color: #d6d3d1 !important; }
+        /* Footer */
+        html.dark footer { border-color: #292524 !important; }
 
-/* Footer */
-html.dark footer { border-color: #292524 !important; }
+        /* CTA inferior de servicios */
+        html.dark .bg-amber-100 { background-color: #451a03 !important; }
 
-/* CTA inferior de servicios */
-html.dark .bg-amber-100 { background-color: #451a03 !important; }
-
-/* Botón modo oscuro */
-#darkToggle {
-    transition: all 0.3s ease;
-}
-#darkToggle .icon-sun  { display: none; }
-#darkToggle .icon-moon { display: block; }
-html.dark #darkToggle .icon-sun  { display: block; }
-html.dark #darkToggle .icon-moon { display: none; }
+        /* Botón modo oscuro */
+        #darkToggle {
+            transition: all 0.3s ease;
+        }
+        #darkToggle .icon-sun  { display: none; }
+        #darkToggle .icon-moon { display: block; }
+        html.dark #darkToggle .icon-sun  { display: block; }
+        html.dark #darkToggle .icon-moon { display: none; }
     </style>
 </head>
 <body class="monkey-subtle-pattern text-stone-800">
@@ -572,27 +570,12 @@ html.dark #darkToggle .icon-moon { display: none; }
                     <div class="p-8">
                         <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Tienda Online</span>
                         <h3 class="text-2xl mt-2 mb-4">dperfumes</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de una página web para la venta de productos de perfumería, con carrito de compras y sistema de pago vía WhatsApp.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Venta de productos de perfumería, con carrito de compras y sistema de pago vía WhatsApp.</p>
                         <a href="https://dperfumes.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
 
-                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/newyears.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Landing Page</span>
-                        <h3 class="text-2xl mt-2 mb-4">newyears</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina de aterrizaje promocional para la campaña de Artista "newyears" con su estetica única y autentica.</p>
-                        <a href="https://loigon12.github.io/newyears/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
-                    </div>
-                </div>
-
-
+                
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5] image-container">
                         <img src="images/eminahme.png" 
@@ -603,13 +586,30 @@ html.dark #darkToggle .icon-moon { display: none; }
                     <div class="p-8">
                         <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Consultora de movilidad</span>
                         <h3 class="text-2xl mt-2 mb-4">ÉMINA</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina web para consultora de movilidad con contenido acerca de sus servicios y soluciones.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Consultora de movilidad con contenido acerca de sus servicios y soluciones.</p>
                         <a href="https://emina.com.co" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
-
                 
+
+
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/positano.png" 
+                             alt="Urban Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Compañia gastronomica</span>
+                        <h3 class="text-2xl mt-2 mb-4">Grupo Positano</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Compañia gastronomica Grupo Positano con contenido acerca de sus servicios y soluciones.</p>
+                        <a href="https://grupo-positano.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
+
+
+                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
                         <img src="images/FEGCON.png" 
                              alt="Urban Editorial" 
@@ -619,15 +619,25 @@ html.dark #darkToggle .icon-moon { display: none; }
                     <div class="p-8">
                         <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Pagina corporativa</span>
                         <h3 class="text-2xl mt-2 mb-4">FEGCON: Fondo de Empleados del Grupo Constructor del Tolima</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Pagina web para fondo de empleados del grupo constructor del tolima con contenido acerca de sus servicios y soluciones.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Fondo de Empleados dedicado al desarrollo de empleados y su bienestar. Contiene información sobre sus servicios y soluciones.</p>
                         <a href="https://fegcon.com.co" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
-
-
-                   
-
                 
+                <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/newyears.png" 
+                             alt="Vogue Editorial" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Landing Page</span>
+                        <h3 class="text-2xl mt-2 mb-4">newyears</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Web biografica para campaña de Artista "newyears" con su estetica única y autentica.</p>
+                        <a href="https://loigon12.github.io/newyears/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
+                    </div>
+                </div>
 
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
@@ -639,27 +649,18 @@ html.dark #darkToggle .icon-moon { display: none; }
                     <div class="p-8">
                         <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Juego Retro</span>
                         <h3 class="text-2xl mt-2 mb-4">Videojuego: SNAKE</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de un videojuego clásico Snake con una interfaz gamer y funcionalidades interactivas.</p>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Desarrollo de un videojuego clásico Snake con una interfaz gamer y funcionalidades interactivas con JavaScript.</p>
                         <a href="https://loigon12.github.io/Snake-web/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
+                </div>
+
+                
+               
                 </div>
                 
                 
 
-                  <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/rinconLoigon.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Proyecto personal</span>
-                        <h3 class="text-2xl mt-2 mb-4">El Rincón de Loigon </h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Galeria de fotos y videos de uno de mis hobbies favoritos que es tomar fotografias con mi camara digital compacta</p>
-                        <a href="https://el-rincon-de-loigon.vercel.app" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
-                    </div>
-                </div>
+                  
         </div>
     </section>
 
