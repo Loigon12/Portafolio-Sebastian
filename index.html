@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebastian Londoño | Portafolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = { darkMode: 'class' }
-</script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 11c.966 0 1.75-.784 1.75-1.75S7.966 7.5 7 7.5s-1.75.784-1.75 1.75S6.034 11 7 11z'/><path d='M17 11c.966 0 1.75-.784 1.75-1.75S17.966 7.5 17 7.5s-1.75.784-1.75 1.75.784 1.75 1.75 1.75z'/><path d='M12 21c-4.418 0-8-3.582-8-8 0-1.85.63-3.55 1.69-4.9C6.44 6.85 8.91 4 12 4s5.56 2.85 6.31 4.1c1.06 1.35 1.69 3.05 1.69 4.9 0 4.418-3.582 8-8 8z'/><path d='M12 18c-2.21 0-4-1.79-4-4 0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2 0 2.21-1.79 4-4 4z'/></svg>">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -17,10 +17,11 @@
         /* ===== DARK MODE ===== */
         html.dark body { background-color: #0c0a09; color: #e7e5e4; }
 
-        /* Navbar */
-        html.dark nav { background-color: rgba(12,10,9,0.90) !important; border-color: #292524 !important; }
+        /* Navbar & Menú móvil */
+        html.dark nav, html.dark #mobileMenu { background-color: rgba(12,10,9,0.95) !important; border-color: #292524 !important; }
         html.dark nav a { color: #d6d3d1 !important; }
         html.dark .brand { color: #fafaf9 !important; }
+        html.dark #mobileMenuBtn { color: #d6d3d1 !important; }
 
         /* Loader */
         html.dark #loader { background-color: #0c0a09 !important; }
@@ -29,18 +30,18 @@
         html.dark .bg-white   { background-color: #171412 !important; }
         html.dark .bg-stone-50 { background-color: #1c1917 !important; }
         html.dark .bg-stone-100 { background-color: #1e1a18 !important; }
-        html.dark .bg-stone-200 { background-color: #292524 !important; } /* Corregido: para tarjetas de certificaciones */
+        html.dark .bg-stone-200 { background-color: #292524 !important; }
 
         /* Textos */
-        html.dark .text-stone-900 { color: #fafaf9 !important; } /* Corregido: Invierte de negro a claro */
+        html.dark .text-stone-900 { color: #fafaf9 !important; }
         html.dark .text-stone-800 { color: #e7e5e4 !important; }
         html.dark .text-stone-700 { color: #d6d3d1 !important; }
         html.dark .text-stone-600 { color: #a8a29e !important; }
-        html.dark .text-stone-500 { color: #9a928d !important; } /* Corregido: Ligeramente más claro para lectura */
+        html.dark .text-stone-500 { color: #9a928d !important; }
         html.dark .text-stone-400 { color: #78716c !important; }
 
         /* Bordes */
-        html.dark .border-stone-300 { border-color: #44403c !important; } /* Corregido: inputs de contacto */
+        html.dark .border-stone-300 { border-color: #44403c !important; }
         html.dark .border-stone-200 { border-color: #292524 !important; }
         html.dark .border-stone-100 { border-color: #1c1917 !important; }
         html.dark hr { border-color: #292524 !important; }
@@ -93,14 +94,12 @@
         /* CTA inferior de servicios */
         html.dark .bg-amber-100 { background-color: #451a03 !important; }
 
-        /* Botón modo oscuro */
-        #darkToggle {
-            transition: all 0.3s ease;
-        }
-        #darkToggle .icon-sun  { display: none; }
-        #darkToggle .icon-moon { display: block; }
-        html.dark #darkToggle .icon-sun  { display: block; }
-        html.dark #darkToggle .icon-moon { display: none; }
+        /* Botón modo oscuro (Modificado para usar clases) */
+        .darkToggle { transition: all 0.3s ease; }
+        .darkToggle .icon-sun  { display: none; }
+        .darkToggle .icon-moon { display: block; }
+        html.dark .darkToggle .icon-sun  { display: block; }
+        html.dark .darkToggle .icon-moon { display: none; }
     </style>
 </head>
 <body class="monkey-subtle-pattern text-stone-800">
@@ -114,30 +113,56 @@
     </div>
     <span class="mt-8 text-[10px] tracking-[0.5em] uppercase text-stone-400 font-light">Sebastian Londoño Medina</span>
 </div>
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-200 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
             <div class="brand text-2xl font-bold tracking-tighter text-stone-900">
                 Loigon12 <span class="text-sm font-light italic">by Sebastian</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+            
+            <!-- Botón Hamburguesa Mobile -->
+            <button id="mobileMenuBtn" class="md:hidden text-stone-600 hover:text-amber-700 focus:outline-none transition-colors duration-300 p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+
+            <!-- Enlaces Desktop -->
+            <div class="hidden md:flex space-x-8 items-center text-sm uppercase tracking-widest font-medium">
                 <a href="#inicio" class="hover:text-amber-700 transition">Inicio</a>
                 <a href="#sobre-mi" class="hover:text-amber-700 transition">Perfil</a>
                 <a href="#habilidades" class="hover:text-amber-700 transition">Habilidades</a>
                 <a href="#galeria" class="hover:text-amber-700 transition">Proyectos</a>
-                <button id="darkToggle"
-    onclick="toggleDarkMode()"
-    class="ml-2 w-9 h-9 flex items-center justify-center border border-stone-300 dark:border-stone-600 hover:border-amber-700 text-stone-500 hover:text-amber-700 transition rounded-sm"
-    title="Cambiar modo">
-    <i class="icon-moon fa-solid fa-moon text-sm"></i>
-    <i class="icon-sun  fa-solid fa-sun  text-sm text-amber-500"></i>
-</button>
+                
+                <button onclick="toggleDarkMode()" class="darkToggle ml-2 w-9 h-9 flex items-center justify-center border border-stone-300 dark:border-stone-600 hover:border-amber-700 text-stone-500 hover:text-amber-700 transition rounded-sm" title="Cambiar modo">
+                    <i class="icon-moon fa-solid fa-moon text-sm"></i>
+                    <i class="icon-sun  fa-solid fa-sun  text-sm text-amber-500"></i>
+                </button>
+                
                 <a href="#contacto" class="px-4 py-2 bg-stone-900 text-white hover:bg-stone-700 transition">Contacto</a>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Mobile -->
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-xl transition-all duration-300">
+            <div class="flex flex-col px-6 py-6 space-y-5">
+                <a href="#inicio" class="mobile-link text-sm uppercase tracking-widest font-medium text-stone-800 hover:text-amber-700 transition">Inicio</a>
+                <a href="#sobre-mi" class="mobile-link text-sm uppercase tracking-widest font-medium text-stone-800 hover:text-amber-700 transition">Perfil</a>
+                <a href="#habilidades" class="mobile-link text-sm uppercase tracking-widest font-medium text-stone-800 hover:text-amber-700 transition">Habilidades</a>
+                <a href="#galeria" class="mobile-link text-sm uppercase tracking-widest font-medium text-stone-800 hover:text-amber-700 transition">Proyectos</a>
+                <a href="#contacto" class="mobile-link text-sm uppercase tracking-widest font-medium text-amber-700 hover:text-amber-900 transition">Contacto</a>
+                
+                <div class="pt-4 border-t border-stone-200 dark:border-stone-800 flex items-center justify-between">
+                    <span class="text-sm uppercase tracking-widest font-medium text-stone-500">Modo de visualización</span>
+                    <button onclick="toggleDarkMode()" class="darkToggle w-10 h-10 flex items-center justify-center border border-stone-300 dark:border-stone-600 hover:border-amber-700 text-stone-500 hover:text-amber-700 transition rounded-sm">
+                        <i class="icon-moon fa-solid fa-moon text-base"></i>
+                        <i class="icon-sun  fa-solid fa-sun  text-base text-amber-500"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
 
-        <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="images/man-1853545_1280.jpg" 
                  alt="Model Hero" class="w-full h-full object-cover opacity-90">
@@ -150,23 +175,23 @@
         </div>
     </section>
 
-    <section class="py-20 bg-stone-900 text-stone-100">
+    <section class="py-12 md:py-20 bg-stone-900 text-stone-100">
         <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
                 <p class="text-stone-500 text-xs uppercase mb-1">Experiencia</p>
-                <p class="text-2xl font-semibold">3 años</p>
+                <p class="text-xl md:text-2xl font-semibold">3 años</p>
             </div>
             <div>
                 <p class="text-stone-500 text-xs uppercase mb-1">Edad</p>
-                <p class="text-2xl font-semibold">19 años</p>
+                <p class="text-xl md:text-2xl font-semibold">19 años</p>
             </div>
             <div>
                 <p class="text-stone-500 text-xs uppercase mb-1">Profesion</p>
-                <p class="text-2xl font-semibold">Desarrollador de Software</p>
+                <p class="text-xl md:text-2xl font-semibold">Desarrollador de Software</p>
             </div>
             <div>
                 <p class="text-stone-500 text-xs uppercase mb-1">Hobbie</p>
-                <p class="text-2xl font-semibold">Hacer deporte</p>
+                <p class="text-xl md:text-2xl font-semibold">Hacer deporte</p>
             </div>
         </div>
     </section>
@@ -177,38 +202,37 @@
             <div class="w-full md:w-1/2">
                 <img src="images/sobremi.jpg" alt="About" class="shadow-2xl grayscale hover:grayscale-0 transition duration-1000">
             </div>
-            <div class="w-full md:w-1/2">
+            <div class="w-full md:w-1/2 text-center md:text-left">
                 <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">Desarrollador de Software</span>
-                <h2 class="text-5xl mt-4 mb-6 leading-tight">Adaptabilidad y Evolución Constante.</h2>
+                <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight">Adaptabilidad y Evolución Constante.</h2>
                 <p class="text-stone-600 leading-relaxed mb-6">
                     Soy un apasionado por la tecnología que vive en la intersección entre la lógica estructural de la ingeniería y la creatividad del desarrollo de software. Me enfoco en crear código limpio, escalable y, sobre todo, funcional. Siempre estoy aprendiendo algo nuevo, desde maneras de innovar con nuevas tecnologías a ideas de desarrollo agiles.
 
 <br><br>Mi objetivo es transformar ideas complejas en soluciones digitales intuitivas y eficientes que no solo cumplan con los requisitos técnicos, sino que también ofrezcan una experiencia de usuario excepcional, como paginas web, aplicaciones móviles, sistemas backend para potenciar software de tu empresa, negocio o proyecto. 
                 </p>
                 
-                <div class="flex space-x-6 text-2xl text-stone-400">
+                <div class="flex justify-center md:justify-start space-x-6 text-2xl text-stone-400">
                     <a href="https://www.instagram.com/sebaslondono_/" target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-instagram hover:text-amber-800 cursor-pointer transition"></i>
-</a>
+                        <i class="fa-brands fa-instagram hover:text-amber-800 cursor-pointer transition"></i>
+                    </a>
                     <a href="https://github.com/Loigon12" target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-github hover:text-amber-800 cursor-pointer transition"></i>
-</a>
+                        <i class="fa-brands fa-github hover:text-amber-800 cursor-pointer transition"></i>
+                    </a>
                     <a href="www.linkedin.com/in/sebastian-londoño-medina-007707305" target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-linkedin hover:text-amber-800 cursor-pointer transition"></i>
-</a>
+                        <i class="fa-brands fa-linkedin hover:text-amber-800 cursor-pointer transition"></i>
+                    </a>
                     <a href="https://www.tiktok.com/@sebaslondono_?_r=1&_t=ZS-936xFZ2REmH" target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-tiktok hover:text-amber-800 cursor-pointer transition"></i>
-</a>
+                        <i class="fa-brands fa-tiktok hover:text-amber-800 cursor-pointer transition"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
 
-    <!-- ===== SECCIÓN: LO QUE PUEDO HACER ===== -->
+<!-- ===== SECCIÓN: LO QUE PUEDO HACER ===== -->
 <section id="servicios" class="py-24 bg-white overflow-hidden">
     <div class="max-w-6xl mx-auto px-6">
-
         <div class="text-center mb-20">
             <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">¿En qué te puedo ayudar?</span>
             <h2 class="text-4xl md:text-5xl mt-4 mb-4 italic leading-tight">Lo que puedo construir<br>para ti</h2>
@@ -217,10 +241,8 @@
             </p>
         </div>
 
-        <!-- Grid de servicios -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Card 1: Páginas Web -->
+            <!-- Card 1 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -239,7 +261,7 @@
                 </div>
             </div>
 
-            <!-- Card 2: Tiendas Online -->
+            <!-- Card 2 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -253,12 +275,12 @@
                 </p>
                 <div class="mt-6 flex flex-wrap gap-2">
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">E-commerce</span>
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Carrito de compras</span>
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Pagos integrados</span>
+                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Carrito</span>
+                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Pagos</span>
                 </div>
             </div>
 
-            <!-- Card 3: Sistemas con Login -->
+            <!-- Card 3 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -271,12 +293,12 @@
                     Plataformas donde tus usuarios pueden registrarse, iniciar sesión y acceder a contenido exclusivo. Ideal para academias, clubes, asociaciones o cualquier negocio con membresías.
                 </p>
                 <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Usuarios & roles</span>
+                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Usuarios</span>
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Paneles de control</span>
                 </div>
             </div>
 
-            <!-- Card 4: Base de datos -->
+            <!-- Card 4 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -291,11 +313,10 @@
                 <div class="mt-6 flex flex-wrap gap-2">
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Bases de datos</span>
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Almacenamiento</span>
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Reportes</span>
                 </div>
             </div>
 
-            <!-- Card 5: Integraciones -->
+            <!-- Card 5 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -303,18 +324,17 @@
                     </div>
                 </div>
                 <span class="text-[10px] tracking-[0.25em] uppercase text-stone-400 group-hover:text-stone-500 font-bold">Servicio 05</span>
-                <h3 class="text-xl font-semibold text-stone-900 group-hover:text-white mt-2 mb-3 transition-colors duration-500">Integraciones & Automatizaciones</h3>
+                <h3 class="text-xl font-semibold text-stone-900 group-hover:text-white mt-2 mb-3 transition-colors duration-500">Integraciones</h3>
                 <p class="text-stone-500 group-hover:text-stone-300 text-sm leading-relaxed transition-colors duration-500">
                     Conecto tu sitio con herramientas externas: WhatsApp, correos automáticos, mapas, redes sociales, pasarelas de pago y más. Que tu negocio trabaje solo mientras tú descansas.
                 </p>
                 <div class="mt-6 flex flex-wrap gap-2">
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">APIs externas</span>
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">WhatsApp Bot</span>
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Email automático</span>
                 </div>
             </div>
 
-            <!-- Card 6: SEO & Mantenimiento -->
+            <!-- Card 6 -->
             <div class="group relative bg-stone-50 border border-stone-100 p-8 hover:bg-stone-900 hover:border-stone-900 transition-all duration-500 cursor-default">
                 <div class="mb-6">
                     <div class="w-12 h-12 flex items-center justify-center bg-amber-100 group-hover:bg-amber-800/30 transition-colors duration-500 rounded-sm">
@@ -329,13 +349,10 @@
                 <div class="mt-6 flex flex-wrap gap-2">
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Posicionamiento</span>
                     <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Rendimiento</span>
-                    <span class="text-[10px] uppercase tracking-wider px-2 py-1 border border-stone-200 group-hover:border-stone-600 text-stone-400 group-hover:text-stone-400 transition-colors duration-500">Soporte</span>
                 </div>
             </div>
-
         </div>
 
-        <!-- CTA inferior -->
         <div class="mt-20 text-center py-14 bg-stone-900 px-8">
             <p class="text-stone-400 text-xs uppercase tracking-[0.3em] mb-3">¿Tienes una idea en mente?</p>
             <h3 class="text-white text-3xl italic mb-6">Cuéntame qué necesitas<br>y lo hacemos realidad.</h3>
@@ -343,10 +360,8 @@
                 Hablemos
             </a>
         </div>
-
     </div>
 </section>
-<!-- ===== FIN SECCIÓN SERVICIOS ===== -->
 
     <section id="habilidades" class="py-24 bg-stone-50">
     <div class="max-w-6xl mx-auto px-6">
@@ -362,118 +377,59 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
             
             <div class="space-y-6">
-                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
+                <div class="flex items-center justify-center md:justify-start gap-3 border-b border-stone-200 pb-2">
                     <i class="fa-solid fa-code text-cyan-500"></i>
                     <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Frontend</h3>
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-html5 text-orange-600"></i> HTML5
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-css3-alt text-blue-600"></i> CSS3
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-js text-yellow-500"></i> JavaScript ES6+
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-react text-sky-400"></i> React.js
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-amber-500"></i> Next.js
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-bolt text-purple-500"></i> Vite
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-wind text-sky-500"></i> Tailwind CSS
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-bootstrap text-purple-700"></i> Bootstrap
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-vuejs text-emerald-500"></i> Vue.js
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-magnifying-glass text-stone-400"></i> SEO
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-pen-ruler text-pink-500"></i> Diseño Web
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-mobile-screen text-teal-500"></i> UI/UX Responsive
-            </span>
-        </div>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-600"></i> HTML5</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-css3-alt text-blue-600"></i> CSS3</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-js text-yellow-500"></i> JavaScript ES6+</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-react text-sky-400"></i> React.js</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-500"></i> Next.js</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-bolt text-purple-500"></i> Vite</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-wind text-sky-500"></i> Tailwind CSS</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-bootstrap text-purple-700"></i> Bootstrap</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-vuejs text-emerald-500"></i> Vue.js</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-stone-400"></i> SEO</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-pen-ruler text-pink-500"></i> Diseño Web</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-mobile-screen text-teal-500"></i> UI/UX Responsive</span>
+                </div>
             </div>
 
             <div class="space-y-6">
-                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
+                <div class="flex items-center justify-center md:justify-start gap-3 border-b border-stone-200 pb-2">
                     <i class="fa-solid fa-server text-emerald-500"></i>
                     <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Backend & DB</h3>
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-pepper-hot text-stone-600"></i> Flask (Python)
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-node-js text-green-600"></i> Node.js
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-gears text-stone-500"></i> REST APIs
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-leaf text-green-600"></i> MongoDB
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-fire text-orange-500"></i> Firebase
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-database text-blue-800"></i> MySQL
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-database text-red-700"></i> Oracle DB
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-database text-emerald-600"></i> Supabase
-            </span>
-        </div>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-pepper-hot text-stone-600"></i> Flask (Python)</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-node-js text-green-600"></i> Node.js</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-gears text-stone-500"></i> REST APIs</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-leaf text-green-600"></i> MongoDB</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-fire text-orange-500"></i> Firebase</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-database text-blue-800"></i> MySQL</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-database text-red-700"></i> Oracle DB</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-database text-emerald-600"></i> Supabase</span>
+                </div>
             </div>
 
             <div class="space-y-6">
-                
-                <div class="flex items-center gap-3 border-b border-stone-200 pb-2">
-            <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
-            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Herramientas & Metodologías</h3>
-        </div>
-        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-git-alt text-orange-500"></i> Git / GitHub
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-rocket text-orange-600"></i> Postman
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-code text-blue-500"></i> VS Code
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-brain text-purple-600"></i> IntelliJ IDEA
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-jira text-blue-600"></i> Jira Software
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-docker text-sky-600"></i> Docker
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-brands fa-trello text-blue-500"></i> Trello
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-arrows-spin text-teal-600"></i> Scrum
-            </span>
-            <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2">
-                <i class="fa-solid fa-folder-open text-orange-400"></i> FileZilla
-            </span>
-        </div>
+                <div class="flex items-center justify-center md:justify-start gap-3 border-b border-stone-200 pb-2">
+                    <i class="fa-solid fa-screwdriver-wrench text-amber-600"></i>
+                    <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-stone-400">Herramientas & Metodologías</h3>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-git-alt text-orange-500"></i> Git / GitHub</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-rocket text-orange-600"></i> Postman</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-code text-blue-500"></i> VS Code</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-brain text-purple-600"></i> IntelliJ IDEA</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-jira text-blue-600"></i> Jira Software</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-docker text-sky-600"></i> Docker</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-brands fa-trello text-blue-500"></i> Trello</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-arrows-spin text-teal-600"></i> Scrum</span>
+                    <span class="px-3 py-1.5 bg-white border border-stone-200 text-stone-700 text-xs rounded-full flex items-center gap-2"><i class="fa-solid fa-folder-open text-orange-400"></i> FileZilla</span>
+                </div>
             </div>
         </div>
 
@@ -484,66 +440,60 @@
             <h2 class="text-4xl mt-4 mb-12 italic">Certificaciones Obtenidas</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/1757821728494.jpg')">
+                <!-- Cert 1 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/1757821728494.jpg')">
                     <img src="images/certificaciones/1757821728494.jpg" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
                         <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Arquitectura en la Nube</p>
                     </div>
                 </div>
-
-                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/javascript.png')">
+                <!-- Cert 2 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/javascript.png')">
                     <img src="images/certificaciones/javascript.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
                         <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Programación con javascript</p>
                     </div>
                 </div>
-
-                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/react.png')">
+                <!-- Cert 3 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/react.png')">
                     <img src="images/certificaciones/react.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
                         <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Conceptos de React</p>
                     </div>
                 </div>
-
-                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/1164665_SFC_Sebastian Londoño Medina.jpg')">
+                <!-- Cert 4 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/1164665_SFC_Sebastian Londoño Medina.jpg')">
                     <img src="images/1164665_SFC_Sebastian Londoño Medina.jpg" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
                         <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Fundamentos de Scrum</p>
                     </div>
                 </div>
-
-                  <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/JiraSoftware.png')">
+                <!-- Cert 5 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/JiraSoftware.png')">
                     <img src="images/certificaciones/JiraSoftware.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
-                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Fundamentos Teoricos en Jira Software: Estrategias Efectivas para Equipos Agiles</p>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter text-center">Fundamentos Teoricos Jira Software</p>
                     </div>
                 </div>
-
-                  <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/Cursor.png')">
+                <!-- Cert 6 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/Cursor.png')">
                     <img src="images/certificaciones/Cursor.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
-                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Cursor con Python: desarrollo inteligente con IA</p>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter text-center">Cursor con Python: IA</p>
                     </div>
                 </div>
-                
-                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" 
-                     onclick="openModal('images/certificaciones/desarrollo de software.png')">
+                <!-- Cert 7 -->
+                <div class="group relative cursor-pointer overflow-hidden rounded-lg bg-stone-200 aspect-[4/3] shadow-md transition-transform hover:-translate-y-2" onclick="openModal('images/certificaciones/desarrollo de software.png')">
                     <img src="images/certificaciones/desarrollo de software.png" class="w-full h-full object-cover group-hover:opacity-40 transition-opacity">
                     <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all p-4">
                         <i class="fa-solid fa-eye text-stone-900 text-2xl mb-2"></i>
-                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter">Tecnico Laboral en Desarrollo de software</p>
+                        <p class="text-stone-900 font-bold text-xs uppercase tracking-tighter text-center">Tecnico Laboral Desarrollo Software</p>
                     </div>
                 </div>
             </div>
@@ -559,12 +509,10 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                
+                <!-- Proy 1 -->
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/dp.png" 
-                             alt="Urban Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="images/dp.png" alt="dperfumes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
@@ -575,12 +523,10 @@
                     </div>
                 </div>
 
-                
+                <!-- Proy 2 -->
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
-                    <div class="relative overflow-hidden aspect-[4/5] image-container">
-                        <img src="images/eminahme.png" 
-                             alt="Urban Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="relative overflow-hidden aspect-[4/5]">
+                        <img src="images/eminahme.png" alt="ÉMINA" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
@@ -591,13 +537,10 @@
                     </div>
                 </div>
                 
-
-
+                <!-- Proy 3 -->
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/positano.png" 
-                             alt="Urban Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="images/positano.png" alt="Grupo Positano" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
@@ -608,27 +551,24 @@
                     </div>
                 </div>
 
-
+                <!-- Proy 4 -->
                  <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/FEGCON.png" 
-                             alt="Urban Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="images/FEGCON.png" alt="FEGCON" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
                         <span class="text-[10px] tracking-[0.3em] uppercase text-amber-800 font-bold">Pagina corporativa</span>
-                        <h3 class="text-2xl mt-2 mb-4">FEGCON: Fondo de Empleados del Grupo Constructor del Tolima</h3>
-                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Fondo de Empleados dedicado al desarrollo de empleados y su bienestar. Contiene información sobre sus servicios y soluciones.</p>
+                        <h3 class="text-2xl mt-2 mb-4">FEGCON</h3>
+                        <p class="text-stone-500 text-sm leading-relaxed mb-6 font-light">Fondo de Empleados dedicado al desarrollo de empleados y su bienestar. Contiene información sobre sus servicios.</p>
                         <a href="https://fegcon.com.co" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
                 
+                <!-- Proy 5 -->
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/newyears.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="images/newyears.png" alt="newyears" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
@@ -639,11 +579,10 @@
                     </div>
                 </div>
 
+                <!-- Proy 6 -->
                 <div class="group bg-stone-50 overflow-hidden border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="images/snake.png" 
-                             alt="Vogue Editorial" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="images/snake.png" alt="Snake Game" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                     <div class="p-8">
@@ -653,33 +592,24 @@
                         <a href="https://loigon12.github.io/Snake-web/" class="inline-block border-b border-stone-900 pb-1 text-sm tracking-widest uppercase hover:text-amber-800 hover:border-amber-800 transition">Ver Proyecto</a>
                     </div>
                 </div>
-
-                
-               
-                </div>
-                
-                
-
-                  
+            </div>
         </div>
     </section>
 
 <!-- ===== SECCIÓN: DESCARGA MI CV ===== -->
 <section id="cv" class="py-24 bg-stone-900 overflow-hidden relative">
-
-    <!-- Decoración de fondo -->
+    <!-- Decoración de fondo adaptada -->
     <div class="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-center">
-        <span class="text-[28rem] font-black text-white leading-none tracking-tighter">CV</span>
+        <span class="text-[15rem] md:text-[28rem] font-black text-white leading-none tracking-tighter">CV</span>
     </div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
-
         <!-- Lado izquierdo: texto -->
-        <div class="w-full md:w-3/5 text-stone-100">
+        <div class="w-full md:w-3/5 text-stone-100 text-center md:text-left">
             <span class="text-amber-500 font-semibold tracking-widest text-sm uppercase">
                 ¿Te interesa mi perfil profesional?
             </span>
-            <h2 class="text-4xl md:text-5xl mt-4 mb-6 leading-tight italic">
+            <h2 class="text-3xl md:text-5xl mt-4 mb-6 leading-tight italic">
                 Descarga mi CV y<br>conoce mi perfil completo.
             </h2>
             <p class="text-stone-400 leading-relaxed mb-8 font-light text-base">
@@ -689,40 +619,27 @@
             </p>
 
             <!-- Chips de lo que incluye -->
-            <div class="flex flex-wrap gap-3 mb-10">
-                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
-                    ✦ Proyectos en producción
-                </span>
-                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
-                    ✦ Stack Full-Stack
-                </span>
-                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
-                    ✦ Certificaciones
-                </span>
-                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">
-                    ✦ Disponibilidad inmediata
-                </span>
+            <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-10">
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">✦ Proyectos en producción</span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">✦ Stack Full-Stack</span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">✦ Certificaciones</span>
+                <span class="px-4 py-2 border border-stone-700 text-stone-300 text-xs uppercase tracking-wider">✦ Disponibilidad inmediata</span>
             </div>
 
             <!-- Botones CTA -->
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="CV_Sebastian_Londono_Medina.pdf"
-                   download
-                   class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-amber-700 hover:bg-amber-600 text-white text-xs uppercase tracking-widest transition-all duration-300 group">
-                    <i class="fa-solid fa-download group-hover:-translate-y-0.5 transition-transform"></i>
-                    Descargar CV
+            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                <a href="CV_Sebastian_Londono_Medina.pdf" download class="inline-flex items-center justify-center gap-3 px-10 py-4 bg-amber-700 hover:bg-amber-600 text-white text-xs uppercase tracking-widest transition-all duration-300 group">
+                    <i class="fa-solid fa-download group-hover:-translate-y-0.5 transition-transform"></i> Descargar CV
                 </a>
-                <a href="#contacto"
-                   class="inline-flex items-center justify-center gap-3 px-10 py-4 border border-stone-500 text-stone-300 hover:border-amber-600 hover:text-amber-500 text-xs uppercase tracking-widest transition-all duration-300">
-                    Contáctame
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                <a href="#contacto" class="inline-flex items-center justify-center gap-3 px-10 py-4 border border-stone-500 text-stone-300 hover:border-amber-600 hover:text-amber-500 text-xs uppercase tracking-widest transition-all duration-300">
+                    Contáctame <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
         </div>
 
         <!-- Lado derecho: tarjeta visual del CV -->
         <div class="w-full md:w-2/5 flex justify-center">
-            <div class="relative w-64">
+            <div class="relative w-64 max-w-full">
                 <!-- Sombra decorativa -->
                 <div class="absolute inset-0 translate-x-3 translate-y-3 bg-amber-800/30 rounded-sm"></div>
 
@@ -740,7 +657,7 @@
                         </div>
                     </div>
 
-                    <!-- Líneas decorativas simulando texto -->
+                    <!-- Líneas decorativas -->
                     <div class="space-y-2 mb-4">
                         <div class="h-1.5 bg-stone-200 rounded w-full"></div>
                         <div class="h-1.5 bg-stone-200 rounded w-4/5"></div>
@@ -760,7 +677,6 @@
                         <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Next.js</span>
                         <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">MongoDB</span>
                         <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Docker</span>
-                        <span class="px-2 py-0.5 bg-stone-100 text-stone-500 text-[9px] rounded-full">Flask</span>
                     </div>
 
                     <div class="space-y-1.5">
@@ -778,14 +694,7 @@
 
     </div>
 </section>
-<!-- ===== FIN SECCIÓN CV ===== -->
 
-<div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm transition-all" onclick="closeModal()">
-    <div class="relative max-w-5xl w-full flex flex-col items-center">
-        <button class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-500 transition">&times;</button>
-        <img id="modalImg" src="" class="max-w-full max-h-[80vh] rounded shadow-2xl border-4 border-white/10" onclick="event.stopPropagation()">
-    </div>
-</div>
     <div id="certModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4 md:p-10 transition-opacity duration-300">
         <button onclick="closeModal()" class="absolute top-8 right-8 text-white text-3xl hover:text-amber-500 transition">
             <i class="fa-solid fa-xmark"></i>
@@ -793,49 +702,27 @@
         <img id="modalImg" src="" alt="Certificado Ampliado" class="max-w-full max-h-full object-contain shadow-2xl">
     </div>
 
-
     <section id="contacto" class="py-24 max-w-3xl mx-auto px-6 text-center">
     <span class="text-amber-800 font-semibold tracking-widest text-sm uppercase">¿Tienes ganas de empezar algo nuevo?</span>
     <h2 class="text-4xl mb-4 italic mt-4">¿Trabajamos juntos?</h2>
     <p class="text-stone-500 mb-12">Estoy dispuesto a convertir tus ideas en sistemas robustos y exitosos.</p>
 
     <form id="contactForm" class="space-y-6" novalidate>
-
-        <!-- Tu Access Key va aquí (campo oculto, no lo ve el usuario) -->
+        <!-- Tu Access Key va aquí (campo oculto) -->
         <input type="hidden" name="access_key" value="6dcf95a9-7dc8-49f2-8c94-b948647b0155">
-
         <!-- Asunto que verás en el correo -->
         <input type="hidden" name="subject" value="Nuevo mensaje desde tu portafolio">
-
         <!-- Evita bots -->
         <input type="checkbox" name="botcheck" style="display:none">
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <input
-                type="text"
-                name="name"
-                placeholder="Nombre Completo"
-                required
-                class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
-            <input
-                type="email"
-                name="email"
-                placeholder="Email "
-                required
-                class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
+            <input type="text" name="name" placeholder="Nombre Completo" required class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
+            <input type="email" name="email" placeholder="Email" required class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition">
         </div>
 
-        <textarea
-            name="message"
-            placeholder="Cuéntame sobre tu proyecto "
-            rows="5"
-            required
-            class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition resize-none"></textarea>
+        <textarea name="message" placeholder="Cuéntame sobre tu proyecto" rows="5" required class="w-full p-4 bg-transparent border-b border-stone-300 focus:border-stone-900 outline-none transition resize-none"></textarea>
 
-        <button
-            type="submit"
-            id="submitBtn"
-            class="mt-8 px-12 py-4 bg-stone-900 text-white uppercase tracking-widest text-sm hover:bg-stone-700 transition-all duration-300 flex items-center gap-3 mx-auto disabled:opacity-60 disabled:cursor-not-allowed">
+        <button type="submit" id="submitBtn" class="mt-8 px-12 py-4 bg-stone-900 text-white uppercase tracking-widest text-sm hover:bg-stone-700 transition-all duration-300 flex items-center gap-3 mx-auto disabled:opacity-60 disabled:cursor-not-allowed">
             <span id="btnText">Enviar Propuesta</span>
             <i id="btnIcon" class="fa-solid fa-paper-plane text-xs"></i>
         </button>
@@ -846,23 +733,15 @@
         <i class="fa-solid fa-circle-check text-4xl text-amber-700"></i>
         <p class="text-stone-800 font-semibold tracking-wide">¡Mensaje enviado con éxito!</p>
         <p class="text-stone-500 text-sm">Te responderé lo antes posible </p>
-        <button onclick="resetForm()" class="mt-4 text-xs uppercase tracking-widest border-b border-stone-400 hover:text-amber-800 hover:border-amber-800 transition">
-            Enviar otro mensaje
-        </button>
+        <button onclick="resetForm()" class="mt-4 text-xs uppercase tracking-widest border-b border-stone-400 hover:text-amber-800 hover:border-amber-800 transition">Enviar otro mensaje</button>
     </div>
 
     <!-- Mensaje error -->
     <div id="statusError" class="hidden flex-col items-center gap-3 py-10 px-6 bg-stone-50 border border-red-200 mt-8">
         <i class="fa-solid fa-circle-exclamation text-4xl text-red-400"></i>
         <p class="text-stone-800 font-semibold tracking-wide">Algo salió mal.</p>
-        <p class="text-stone-500 text-sm">Escríbeme directo a
-            <a href="mailto:sebastianpersonal244@gmail.com" class="text-amber-800 underline">
-                sebastianpersonal244@gmail.com
-            </a>
-        </p>
-        <button onclick="resetForm()" class="mt-4 text-xs uppercase tracking-widest border-b border-stone-400 hover:text-amber-800 hover:border-amber-800 transition">
-            Intentar de nuevo
-        </button>
+        <p class="text-stone-500 text-sm">Escríbeme directo a <a href="mailto:sebastianpersonal244@gmail.com" class="text-amber-800 underline">sebastianpersonal244@gmail.com</a></p>
+        <button onclick="resetForm()" class="mt-4 text-xs uppercase tracking-widest border-b border-stone-400 hover:text-amber-800 hover:border-amber-800 transition">Intentar de nuevo</button>
     </div>
 </section>
 
@@ -875,8 +754,7 @@
         <p class="text-xs text-stone-400 uppercase tracking-widest">&copy; 2026 Sebastian Londoño Medina - Todos los derechos reservados</p>
     </footer>
 
-
-        <div class="wa-widget">
+    <div class="wa-widget">
     <div class="wa-chat-window" id="wa-chat-window">
         <div class="wa-chat-header">
             <div class="wa-header-info">
@@ -897,7 +775,6 @@
                 <p>¿Estás dispuesto a que trabajemos juntos?</p>
                 <span class="wa-time" id="current-time"></span>
             </div>
-            
             <div class="wa-sticker-container">
                 <img src="images.jpg" alt="Monkey Sticker" class="wa-sticker">
             </div>
@@ -917,7 +794,7 @@
 
 <script src="js/Main.js"></script>
 <script>
-    // ===== DARK MODE =====
+    // ===== DARK MODE LOGIC =====
     function toggleDarkMode() {
         const html = document.documentElement;
         html.classList.toggle('dark');
@@ -932,6 +809,25 @@
             document.documentElement.classList.add('dark');
         }
     })();
+
+    // ===== MOBILE MENU LOGIC =====
+    document.addEventListener("DOMContentLoaded", function() {
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        // Abrir/cerrar menú con el botón hamburguesa
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Cerrar menú al presionar cualquier enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        });
+    });
 </script>
 <script src="js/Form.js"></script>
 </body>
